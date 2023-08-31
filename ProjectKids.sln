@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KidsService", "KidsService\KidsService.csproj", "{364A6852-E078-4ED3-B52A-8583BC5B66AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KidsService", "KidsService\KidsService.csproj", "{364A6852-E078-4ED3-B52A-8583BC5B66AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KidsServiceBLL", "KidsServiceBLL\KidsServiceBLL.csproj", "{87A1021C-A29C-43F7-BE5C-B02F003E50D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{364A6852-E078-4ED3-B52A-8583BC5B66AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{364A6852-E078-4ED3-B52A-8583BC5B66AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{364A6852-E078-4ED3-B52A-8583BC5B66AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87A1021C-A29C-43F7-BE5C-B02F003E50D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87A1021C-A29C-43F7-BE5C-B02F003E50D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87A1021C-A29C-43F7-BE5C-B02F003E50D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87A1021C-A29C-43F7-BE5C-B02F003E50D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
