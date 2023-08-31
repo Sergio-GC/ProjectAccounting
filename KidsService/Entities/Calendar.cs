@@ -11,7 +11,7 @@ namespace KidsService
     {
         [Key]
         public int Id { get; set; }
-        public Kid Kid { get; set; }
+        public virtual Kid Kid { get; set; }
         public DateTime Date { get; set; }
         public string Hours { get; set; }
         public double Price { get; set; }
