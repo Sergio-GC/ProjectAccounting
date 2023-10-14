@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KidsService", "KidsService\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KidsServiceBLL", "KidsServiceBLL\KidsServiceBLL.csproj", "{87A1021C-A29C-43F7-BE5C-B02F003E50D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web API", "Web API\Web API.csproj", "{21ACE7C2-5933-4580-B1FD-D1BF64FEE874}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web API", "Web API\Web API.csproj", "{21ACE7C2-5933-4580-B1FD-D1BF64FEE874}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

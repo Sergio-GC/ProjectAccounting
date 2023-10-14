@@ -1,3 +1,6 @@
+using KidsService;
+using Microsoft.EntityFrameworkCore;
+
 namespace Web_API
 {
     public class Program
@@ -9,6 +12,13 @@ namespace Web_API
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<KidsContext>((serviceProvider, options) =>
+            {
+                var configuration = serviceProvider.GetRequiredService<IConfiguration>();
+                var connectionString = configuration.GetConnectionString("MySqlConnection");
+                options.UseMySQL(connectionString!);
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
