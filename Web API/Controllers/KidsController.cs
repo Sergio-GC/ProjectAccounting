@@ -33,7 +33,7 @@ namespace Web_API.Controllers
 
             foreach(Kid k in kids)
             {
-                kidModels.Add(k.KidToModel());
+                kidModels.Add(k.KidToModel(true));
             }
 
             return kidModels;
@@ -43,7 +43,7 @@ namespace Web_API.Controllers
         [HttpGet("{id}")]
         public KidModel GetKid(int id)
         {
-            return _kidsManager.GetKidById(id).KidToModel();
+            return _kidsManager.GetKidById(id).KidToModel(true);
         }
 
         // PUT: api/Kids/5

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 public static class ExtensionConverter
 {
-    public static KidModel KidToModel(this Kid kid)
+    public static KidModel KidToModel(this Kid kid, bool firstKid)
     {
         KidModel result = new KidModel();
 
@@ -11,23 +11,13 @@ public static class ExtensionConverter
         result.Birthdate = kid.Birthdate;
         result.Name = kid.Name;
         result.LastName = kid.LastName;
-        
-        if(kid.Siblings != null)
+
+        if (kid.Siblings != null && firstKid)
         {
-            List<KidModel> siblings = new List<KidModel>();
-
-            foreach(Kid sibling in kid.Siblings)
+            foreach (Kid km in kid.Siblings)
             {
-                KidModel km = new KidModel();
-
-                km.Id = sibling.Id;
-                km.Name = sibling.Name;
-                km.LastName = sibling.LastName;
-                km.Birthdate = sibling.Birthdate;
-
-                siblings.Add(km);
+                result.Siblings.Add(km.KidToModel(false));
             }
-            result.Siblings = siblings;
         }
         else
         {
@@ -70,7 +60,21 @@ public static class ExtensionConverter
         result.IsDefinitive = calendar.IsDefinitive;
         result.Date = calendar.Date;
         result.Hours = calendar.Hours;
-        result.Kid = calendar.Kid.KidToModel();
+        result.Kid = calendar.Kid.KidToModel(true);
+
+        return result;
+    }
+
+    public static Calendar CalendarModelToCalendar(this CalendarModel calendarModel)
+    {
+        Calendar result = new Calendar();
+
+        result.Price = calendarModel.Price;
+        result.Hours = calendarModel.Hours;
+        result.Id = calendarModel.Id;
+        result.IsDefinitive = calendarModel.IsDefinitive;
+        result.Date = calendarModel.Date;
+        result.Kid = calendarModel.Kid.KidModelToKid(true);
 
         return result;
     }
