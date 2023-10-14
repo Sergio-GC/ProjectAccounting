@@ -15,8 +15,8 @@ namespace Web_API
             builder.Services.AddDbContext<KidsContext>((serviceProvider, options) =>
             {
                 var configuration = serviceProvider.GetRequiredService<IConfiguration>();
-                var connectionString = configuration.GetConnectionString("MySqlConnection");
-                options.UseMySQL(connectionString!);
+                var connectionString = configuration.GetConnectionString("Database");
+                options.UseMySQL(connectionString);
             });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

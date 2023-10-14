@@ -10,11 +10,13 @@ namespace KidsService
 {
     public class Kid
     {
+        public Kid() { Siblings = new List<Kid>(); }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id {get; set;}
         public string Name { get; set;}
         public string LastName { get; set;}
         public DateTime Birthdate { get; set;}
-        public virtual List<Kid>? Siblings { get; set;}
+        public virtual List<Kid> Siblings { get; set;}
     }
 }

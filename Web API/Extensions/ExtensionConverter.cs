@@ -7,6 +7,7 @@ public static class ExtensionConverter
     {
         KidModel result = new KidModel();
 
+        result.Id = kid.Id;
         result.Birthdate = kid.Birthdate;
         result.Name = kid.Name;
         result.LastName = kid.LastName;
@@ -19,6 +20,7 @@ public static class ExtensionConverter
             {
                 KidModel km = new KidModel();
 
+                km.Id = sibling.Id;
                 km.Name = sibling.Name;
                 km.LastName = sibling.LastName;
                 km.Birthdate = sibling.Birthdate;
@@ -29,7 +31,31 @@ public static class ExtensionConverter
         }
         else
         {
-            result.Siblings = null;
+            result.Siblings = new List<KidModel>();
+        }
+
+        return result;
+    }
+
+    public static Kid KidModelToKid(this KidModel kid, bool firstKid)
+    {
+        Kid result = new Kid();
+
+        result.Id = kid.Id;
+        result.LastName = kid.LastName;
+        result.Name = kid.Name;
+        result.Birthdate = kid.Birthdate;
+
+        if(kid.Siblings != null && firstKid)
+        {
+            foreach(KidModel km in kid.Siblings)
+            {
+                result.Siblings.Add(km.KidModelToKid(false));
+            }
+        }
+        else
+        {
+            result.Siblings = new List<Kid>();
         }
 
         return result;
@@ -39,6 +65,7 @@ public static class ExtensionConverter
     {
         CalendarModel result = new CalendarModel();
 
+        result.Id = calendar.Id;
         result.Price = calendar.Price;
         result.IsDefinitive = calendar.IsDefinitive;
         result.Date = calendar.Date;
