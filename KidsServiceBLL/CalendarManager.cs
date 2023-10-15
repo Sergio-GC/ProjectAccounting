@@ -5,16 +5,64 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 
 namespace KidsServiceBLL
 {
     public class CalendarManager
     {
         private KidsContext context;
+        private ConfigManager _configManager = ConfigManager.Instance;
 
         public CalendarManager(KidsContext context)
         {
             this.context = context;
+        }
+
+        public List<Calendar> GetCalendarsByMonth(DateTime month)
+        {
+            int monthNo = month.Month;
+            List<Calendar> calendars = new List<Calendar>();
+
+            calendars.AddRange(context.Calendars.Where(c => c.Date.Month == monthNo).ToList());
+            return calendars;
+        }
+
+        public List<Calendar> GetCalendarsByKidAndMonth(DateTime month, int kidId, bool siblings)
+        {
+            int monthNo = month.Month;
+            List<Calendar> calendars = new List<Calendar>();
+            Kid kid = context.Kids.Where(k => k.Id == kidId).Single();
+
+            calendars.AddRange(context.Calendars.Where(c => c.Date.Month == monthNo && c.Kid.Id == kidId).ToList());
+
+            if(siblings)
+            {
+                foreach(Kid k in kid.Siblings)
+                {
+                    calendars.AddRange(context.Calendars.Where(c => c.Date.Month == monthNo && c.Kid.Id == k.Id).ToList());
+                }
+            }
+
+            return calendars;
+        }
+
+        public List<Calendar> GetAllEntriesByKid(int kidId, bool siblings)
+        {
+            List<Calendar> result = new();
+
+            Kid kid = context.Kids.Where(k => k.Id == kidId).Single();
+            result.AddRange(context.Calendars.Where(c => c.Kid.Id == kidId).ToList());
+
+            if (siblings)
+            {
+                foreach(Kid k in kid.Siblings)
+                {
+                    result.AddRange(context.Calendars.Where(c => c.Kid.Id == k.Id).ToList());
+                }
+            }
+
+            return result;
         }
 
         public void AddEntry(Calendar calendar)
@@ -39,7 +87,8 @@ namespace KidsServiceBLL
 
         public List<Calendar> GetCalendarsByKid(Kid kid)
         {
-            return context.Calendars.Where(c => c.Kid == kid).ToList();
+            int days = _configManager.defaultDays;
+            return context.Calendars.Where(c => c.Kid == kid && c.Date >= DateTime.Now && c.Date <= DateTime.Now.AddDays(days)).ToList();
         }
 
         public List<Calendar> GetCalendarsByKidAndSiblings(Kid kid)
@@ -64,6 +113,11 @@ namespace KidsServiceBLL
             return result;
         }
 
+        public Calendar GetCalendar(int calendarId)
+        {
+            return context.Calendars.Where(c => c.Id == calendarId).Single();
+        }
+
         public void ToggleDefinitive(Calendar calendar)
         {
             Calendar myCal = context.Calendars.Where(c => c.Id == calendar.Id).Single();
@@ -72,8 +126,8 @@ namespace KidsServiceBLL
 
         public List<Calendar> GetNextDaysEntries()
         {
-            // TODO Add possibility to change the days (3 - 5 - 7 - custom ...)
-            return context.Calendars.Where(c => c.Date >= DateTime.Today && c.Date <= DateTime.Today.AddDays(5)).ToList();
+            int days = _configManager.defaultDays;
+            return context.Calendars.Where(c => c.Date >= DateTime.Now && c.Date <= DateTime.Now.AddDays(days)).ToList();
         }
 
         public void CalculatePrice(Calendar calendar)
