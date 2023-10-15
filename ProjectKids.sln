@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KidsServiceBLL", "KidsServi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web API", "Web API\Web API.csproj", "{21ACE7C2-5933-4580-B1FD-D1BF64FEE874}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{50E6D6E2-3B4A-4A32-A4F6-DD0D1D931577}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{5784F970-B0D8-443F-B41D-4C191C26F464}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +31,16 @@ Global
 		{21ACE7C2-5933-4580-B1FD-D1BF64FEE874}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21ACE7C2-5933-4580-B1FD-D1BF64FEE874}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21ACE7C2-5933-4580-B1FD-D1BF64FEE874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5784F970-B0D8-443F-B41D-4C191C26F464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5784F970-B0D8-443F-B41D-4C191C26F464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5784F970-B0D8-443F-B41D-4C191C26F464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5784F970-B0D8-443F-B41D-4C191C26F464}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5784F970-B0D8-443F-B41D-4C191C26F464} = {50E6D6E2-3B4A-4A32-A4F6-DD0D1D931577}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1F311943-DC19-4106-BDDA-4B7F6BA7782E}

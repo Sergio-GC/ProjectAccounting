@@ -25,6 +25,20 @@ namespace Web_API.Controllers
             _kidsManager = new KidsManager(context);
         }
 
+        [HttpGet("GetNextCalendars")]
+        public List<CalendarModel> GetNextCalendars()
+        {
+            List<CalendarModel> calendarModels = new List<CalendarModel>();
+            List<Calendar> calendars = _calendarManager.GetNextDaysEntries();
+
+            foreach(Calendar c in calendars)
+            {
+                calendarModels.Add(c.CalendarToModel());
+            }
+
+            return calendarModels;
+        }
+
         // GET: api/Calendars/kidId
         [HttpGet("GetCalendarForKid/{kidId}")]
         public List<CalendarModel> GetCalendarsForKid(int kidId)
